@@ -30,7 +30,6 @@ class BinarySearchTree:
                     else:
                         current_node = current_node.right
 
-
     
     def lookup(self, value):
         if self.root == None:
@@ -44,7 +43,8 @@ class BinarySearchTree:
             elif value == current_node.value:
                 return print("Found")
         return print("Not here")
-    
+
+
     def remove(self, value):
         if self.root == None:
             return print("There is nothing")
@@ -88,8 +88,27 @@ class BinarySearchTree:
                             parent_node.right = current_node.right
 
                 # option 3: right child that has a left child //////// Still needs some work
-                elif True:
-                    pass
+                else:
+                  #find the Right child's left most child
+                  leftmost = currentNode.right.left
+                  leftmostParent = currentNode.right
+                  while leftmost.left != None:
+                      leftmostParent = leftmost
+                      leftmost = leftmost.left
+
+                  #Parent's left subtree is now leftmost's right subtree
+                  leftmostParent.left = leftmost.right
+                  leftmost.left = currentNode.left
+                  leftmost.right = currentNode.right
+
+                  if parentNode == None:
+                      self.root = leftmost
+                  else:
+                      if currentNode.data < parentNode.data:
+                          parentNode.left = leftmost
+                      elif currentNode.data > parentNode.data:
+                          parentNode.right = leftmost
+            return True
 
     def print_tree(self):
         if self.root != None:
