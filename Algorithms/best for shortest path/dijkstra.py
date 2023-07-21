@@ -1,0 +1,2 @@
+# It allows us to find the shortest path between two nodes of a weighted graph(means that it can accomodate the weight an edge has).
+# One plus thing that this algorithm has above bellmanFord is that it is faster, but it also can not accomodate negative weights.
